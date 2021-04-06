@@ -14,7 +14,7 @@ let state = {
 
 function updateProblem() {
   state.currentProblem = generateProblem();
-  problemElement.innerHTML = `<h1>${state.currentProblem.numberOne} ${state.currentProblem.operator} ${state.currentProblem.numberTwo}</h1>`;
+  problemElement.innerHTML = `${state.currentProblem.numberOne} ${state.currentProblem.operator} ${state.currentProblem.numberTwo}`;
   ourField.value = "";
   ourField.focus();
 }
@@ -63,11 +63,14 @@ function checkLogic() {
     document.body.classList.add("overlay-is-open");
   }
   if (state.wrongAnswers === 3) {
-    // alert("You Lost");
     endMessage.textContent = "Sorry! You Lost :(";
     document.body.classList.add("overlay-is-open");
+    setTimeout(() => {
+      resetButton.focus();
+    }, 331);
   }
 }
+
 resetButton.addEventListener("click", resetGame);
 
 function resetGame() {
