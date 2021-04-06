@@ -1,0 +1,28 @@
+.boxes {
+  display: flex;
+  width: 100%;
+}
+
+.progress {
+  border: 1px solid #c7c7c7;
+  border-right: none;
+  position: relative;
+}
+
+.progress-inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rebeccapurple;
+  opacity: 0.57;
+  transform: scaleX(0);
+  transform-origin: center left;
+  transition: transform 0.4s ease-out;
+}
+
+.box {
+  height: 40px;
+  border-right: 1px solid #c7c7c7;
+  flex: 1;
+}

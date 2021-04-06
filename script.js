@@ -3,17 +3,20 @@ const ourForm = document.querySelector(".our-form");
 const ourField = document.querySelector(".our-field");
 const pointsneeded = document.querySelector(".points-needed");
 const mistakesAllowed = document.querySelector(".mistakes-allowed");
+const progressBar = document.querySelector(".progress-inner");
 
 let state = {
   score: 0,
   wrongAnswers: 0,
 };
+
 function updateProblem() {
   state.currentProblem = generateProblem();
-  problemElement.innerHTML = `${state.currentProblem.numberOne} ${state.currentProblem.operator} ${state.currentProblem.numberTwo}`;
+  problemElement.innerHTML = `<h1>${state.currentProblem.numberOne} ${state.currentProblem.operator} ${state.currentProblem.numberTwo}</h1>`;
   ourField.value = "";
   ourField.focus();
 }
+
 updateProblem();
 
 function generateNumber(max) {
@@ -42,6 +45,7 @@ function handleSubmit(e) {
     state.score++;
     pointsneeded.textContent = 10 - state.score;
     updateProblem();
+    renderprogressbar();
   } else {
     state.wrongAnswers++;
     mistakesAllowed.textContent = 2 - state.wrongAnswers;
@@ -67,4 +71,9 @@ function resetGame() {
   state.wrongAnswers = 0;
   pointsneeded.textContent = 10;
   mistakesAllowed.textContent = 2;
+  renderprogressbar();
+}
+
+function renderprogressbar() {
+  progressBar.style.transform = `scaleX(${state.score / 10})`;
 }
