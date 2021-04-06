@@ -4,6 +4,8 @@ const ourField = document.querySelector(".our-field");
 const pointsneeded = document.querySelector(".points-needed");
 const mistakesAllowed = document.querySelector(".mistakes-allowed");
 const progressBar = document.querySelector(".progress-inner");
+const endMessage = document.querySelector(".end-message");
+const resetButton = document.querySelector(".reset-button");
 
 let state = {
   score: 0,
@@ -56,16 +58,20 @@ function handleSubmit(e) {
 
 function checkLogic() {
   if (state.score === 10) {
-    alert("You Won!");
-    resetGame();
+    //alert("You Won!");
+    endMessage.textContent = "You Won!";
+    document.body.classList.add("overlay-is-open");
   }
   if (state.wrongAnswers === 3) {
-    alert("You Lost");
-    resetGame();
+    // alert("You Lost");
+    endMessage.textContent = "Sorry! You Lost :(";
+    document.body.classList.add("overlay-is-open");
   }
 }
+resetButton.addEventListener("click", resetGame);
 
 function resetGame() {
+  document.body.classList.remove("overlay-is-open");
   updateProblem();
   state.score = 0;
   state.wrongAnswers = 0;
